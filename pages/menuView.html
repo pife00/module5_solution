@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+    <title>Menu</title>
+</head>
+
+<body>
+    <nav class="bg-yellow-200">
+        <div class="container flex flex-wrap items-center justify-between">
+            <a class="flex items-center" href="#">
+                <img class="h-6 mr-3 sm:h-10" src="../assets/restaurant-logo.png" alt="" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-red-700">
+                    DAVID CHU'S CHINA DISTRO</span>
+            </a>
+
+            <button data-collapse-toggle="navbar-multi-level" type="button"
+                class="inline-flex items-center p-2 ml-3 text-sm text-red-500 rounded-lg md:hidden hover:bg-red-100"
+                aria-controls="navbar-multi-level" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
+                <ul
+                    class="flex flex-col p-4 mt-4 text-red-800 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+                    <li><a class="font-semibold" href="../index.html">Home</a></li>
+                    <li><a class="font-semibold" href="">About</a></li>
+                    <li><a class="font-semibold" href="">Awards</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <hello />
+    <main class="bg-gray-100">
+        <div id="app">
+            <div class="text-center py-4">
+                <h1 class="text-2xl font-semilbold ">Our Menu</h1>
+            </div>
+            <div></div>
+            <section>
+                <div class="flex justify-center">
+                    <div v-if="dishes.length > 0" class="grid md:grid-cols-3 gap-4 grid-cols-1">
+                        <article v-for="item in dishes">
+                            <div class=" shadow-md bg-white p-4 rounded-lg ">
+                                <a @click="categoryHandler(item.short_name)" href="#">
+                                    <img :src=`../assets/menu/${item.short_name}/${item.short_name}.jpg` alt="">
+                                </a>
+                                <div class="mt-2">
+                                    <h2 class="font-semibold text-gray-800 text-lg">
+                                        {{item.name}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+
+                    <div class="grid md:grid-cols-3 gap-4 grid-cols-2">
+
+                        <article v-for="item in categoryDishes.menu_items">
+                            <div class=" shadow-md bg-white p-4 rounded-lg ">
+                                <a>
+                                    <img :src=`../assets/menu/${categoryDishes.category.short_name}/${item.short_name}.jpg`
+                                        alt="">
+
+                                </a>
+                                <div class="mt-2">
+                                    <div class="flex justify-between max-w-sm" >
+                                        <h2 class="font-semibold text-gray-800 text-lg">
+                                            {{item.name}}
+                                        </h2>
+                                        <div class="max-w-md" >
+                                            <p class="text-green-500 text-lg" > ${{item.price_large}} </todo-item>
+
+                                        </div>
+                                    </div>
+                                    <p > {{item.description}} </p>
+
+                                </div>
+
+                            </div>
+                        </article>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="../js/fetchData.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js">
+    </script>
+</body>
+
+</html>
